@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -9,17 +9,66 @@
     <SpaProxyServerUrl>https://localhost:5173</SpaProxyServerUrl>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.SpaProxy">
-      <Version>8.*-*</Version>
-    </PackageReference>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
-  </ItemGroup>
+
+
+	<ItemGroup>
+		<PackageReference Include="Azure.Storage.Blobs" Version="12.24.1" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.16" />
+		<PackageReference Include="Microsoft.AspNetCore.SpaProxy">
+			<Version>8.*-*</Version>
+		</PackageReference>
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.16" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.16" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.16" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.16">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="MimeKit" Version="4.12.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+		<PackageReference Include="MailKit" Version="4.4.0" />
+		<PackageReference Include="WebPush" Version="1.0.12" />
+	</ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\invoiceme.client\invoiceme.client.esproj">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
   </ItemGroup>
+	<ItemGroup>
+		<Using Include="System.Net" />
+		<Using Include="System.Data" />
+		<Using Include="System.Text" />
+		<Using Include="System.Text.Json" />
+		<Using Include="System.Text.Json.Serialization" />
+		<Using Include="System.Text.RegularExpressions" />
+		<Using Include="System.Security.Claims" />
+		<Using Include="System.Security.Cryptography" />
+		<Using Include="System.Linq.Expressions" />
+		<Using Include="System.Net.Http.Headers" />
+		<Using Include="Microsoft.IdentityModel.Tokens" />
+		<Using Include="System.IdentityModel.Tokens.Jwt" />
+		<Using Include="System.ComponentModel.DataAnnotations" />
+		<Using Include="System.ComponentModel.DataAnnotations.Schema" />
+		<Using Include="Microsoft.EntityFrameworkCore" />
+		<Using Include="Microsoft.AspNetCore.Mvc" />
+		<Using Include="Microsoft.AspNetCore.Authorization" />
+		<Using Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
+		<Using Include="MailKit.Net.Smtp" />
+		<Using Include="MailKit.Security" />
+		<Using Include="MimeKit" />
+		<Using Include="MimeKit.Text" />
+		<Using Include="WebPush" />
+		
+		<Using Include="InvoiceMe.Server.Utilities" />
+		<Using Include="InvoiceMe.Server.Response" />
+		<Using Include="InvoiceMe.Server.Data" />
+		<Using Include="InvoiceMe.Server.Data.Enums" />
 
+		<Using Include="InvoiceMe.Server.Data.Models" />
+
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Data\DTOs\" />
+	</ItemGroup>
 </Project>
