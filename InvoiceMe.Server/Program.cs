@@ -1,5 +1,4 @@
 
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -21,7 +20,9 @@ builder.Services.AddCors(options =>
 // Add services to the container.
 builder.Services.AddHttpContextAccessor();
 
-
+// Services
+builder.Services.AddScoped<IInvoiceService, InvoiceService>();
+builder.Services.AddScoped<IClientService, ClientService>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 .AddJwtBearer(options =>

@@ -6,10 +6,10 @@ namespace InvoiceMe.Server.Response
         public int Take { get; set; } = 10;
         public int Skip { get; set; } = 0;
         public string? SearchValue { get; set; }
-        public string? SearchLocation { get; set; }
         public string UserId { get; set; } = string.Empty;
 
         public ApprovalStatus? ApprovalStatus { get; set; }
+        public InvoiceStatus? InvoiceStatus { get; set; }
         public BankType? BankType { get; set; }
         public UserRoles? UserRoles { get; set; }
         public DateStatus? DateStatus { get; set; }

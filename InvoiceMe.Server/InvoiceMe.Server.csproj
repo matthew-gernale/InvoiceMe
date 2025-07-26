@@ -66,9 +66,10 @@
 		<Using Include="InvoiceMe.Server.Data.Enums" />
 
 		<Using Include="InvoiceMe.Server.Data.Models" />
-
-	</ItemGroup>
-	<ItemGroup>
-	  <Folder Include="Data\DTOs\" />
+		<Using Include="InvoiceMe.Server.Data.DTOs.InvoiceDTOs" />
+		<Using Include="InvoiceMe.Server.Data.DTOs.ClientDTOs" />
+		
+		<Using Include="InvoiceMe.Server.Services.InvoiceServices" />
+		<Using Include="InvoiceMe.Server.Services.ClientServices" />
 	</ItemGroup>
 </Project>

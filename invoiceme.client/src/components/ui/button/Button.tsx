@@ -8,7 +8,8 @@ interface ButtonProps {
   endIcon?: ReactNode; // Icon after the text
   onClick?: () => void; // Click handler
   disabled?: boolean; // Disabled state
-  className?: string; // Disabled state
+    className?: string; // Disabled state
+    type?: "button" | "submit",
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -19,7 +20,8 @@ const Button: React.FC<ButtonProps> = ({
   endIcon,
   onClick,
   className = "",
-  disabled = false,
+    disabled = false,
+    type = "button",
 }) => {
   // Size Classes
   const sizeClasses = {
@@ -36,7 +38,8 @@ const Button: React.FC<ButtonProps> = ({
   };
 
   return (
-    <button
+      <button
+          type={type}
       className={`inline-flex items-center justify-center gap-2 rounded-lg transition ${className} ${
         sizeClasses[size]
       } ${variantClasses[variant]} ${

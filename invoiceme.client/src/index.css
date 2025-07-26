@@ -782,3 +782,155 @@ span.flatpickr-weekday,
 .simplebar-scrollbar.simplebar-visible:before {
   @apply opacity-100;
 }
+
+.all-count-card {
+    background-color: var(--color-blue-100);
+    border: 1px solid var(--color-blue-600);
+    color: var(--color-blue-600) !important;
+    transition: .2s ease-in-out;
+}
+
+    .all-count-card:hover {
+        background-color: var(--color-blue-200);
+    }
+
+.pending-count-card {
+    background-color: var(--color-amber-100);
+    border: 1px solid var(--color-amber-500);
+    color: var(--color-amber-500) !important;
+    transition: .2s ease-in-out;
+}
+
+    .pending-count-card:hover {
+        background-color: var(--color-amber-200);
+    }
+
+.approved-count-card {
+    background-color: var(--color-green-100);
+    border: 1px solid var(--color-green-400);
+    color: var(--color-green-400) !important;
+    transition: .2s ease-in-out;
+}
+
+    .approved-count-card:hover {
+        background-color: var(--color-green-200);
+    }
+
+.rejected-count-card {
+    background-color: var(--color-red-100);
+    border: 1px solid var(--color-red-500);
+    color: var(--color-red-500) !important;
+    transition: .2s ease-in-out;
+}
+
+    .rejected-count-card:hover {
+        background-color: var(--color-red-200);
+    }
+
+.preparing-count-card {
+    background-color: var(--color-blue-100);
+    border: 1px solid var(--color-blue-500);
+    color: var(--color-blue-500) !important;
+    transition: .2s ease-in-out;
+}
+
+    .preparing-count-card:hover {
+        background-color: var(--color-blue-200);
+    }
+
+.ready-count-card {
+    background-color: var(--color-teal-100);
+    border: 1px solid var(--color-teal-500);
+    color: var(--color-teal-500) !important;
+    transition: .2s ease-in-out;
+}
+
+    .ready-count-card:hover {
+        background-color: var(--color-teal-200);
+    }
+
+.arrived-count-card {
+    background-color: var(--color-green-100);
+    border: 1px solid var(--color-green-500);
+    color: var(--color-green-500) !important;
+    transition: .2s ease-in-out;
+}
+
+    .arrived-count-card:hover {
+        background-color: var(--color-green-200);
+    }
+
+.done-count-card {
+    background-color: var(--color-slate-100);
+    border: 1px solid var(--color-slate-500);
+    color: var(--color-slate-500) !important;
+    transition: .2s ease-in-out;
+}
+
+    .done-count-card:hover {
+        background-color: var(--color-slate-200);
+    }
+
+
+
+.primary-btn {
+    color: white;
+    background-color: var(--color-emerald-600);
+    width: 100%;
+    transition: .3s ease-in;
+}
+
+    .primary-btn:hover {
+        background-color: var(--color-emerald-400);
+    }
+
+
+.secondary-btn {
+    color: var(--color-emerald-600);
+    background-color: var(--color-emerald-200);
+    border: 1px solid var(--color-emerald-600);
+    width: 100%;
+    transition: .2s ease-in;
+}
+
+    .secondary-btn:hover {
+        background-color: var(--color-emerald-400);
+    }
+
+
+.payment-icon-btn {
+    padding: 7px;
+    border-radius: 7px;
+    color: white;
+    background-color: var(--color-green-400);
+}
+
+
+.view-icon-btn {
+    padding: 7px;
+    border-radius: 7px;
+    color: white;
+    background-color: var(--color-sky-300);
+}
+
+
+.edit-icon-btn {
+    padding: 7px;
+    border-radius: 7px;
+    color: white;
+    background-color: var(--color-green-300);
+}
+
+.disabled-icon-btn {
+    padding: 7px;
+    border-radius: 7px;
+    color: var(--color-slate-300);
+    background-color: var(--color-slate-200);
+}
+
+.dark .disabled-icon-btn {
+    padding: 7px;
+    border-radius: 7px;
+    color: var(--color-slate-600);
+    background-color: var(--color-slate-800);
+}

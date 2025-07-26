@@ -8,9 +8,9 @@
         public int RejectedCount { get; set; }
         public int CancelledCount { get; set; }
         public int DoneCount { get; set; }
-        public int PreparingCount { get; set; }
-        public int PickupCount { get; set; }
-        public int ReadyCount { get; set; }
-        public int ArrivedCount { get; set; }
+        
+        public int ToBePaidCount { get; set; }
+        public int OverdueCount { get; set; }
+        public int PaidCount { get; set; }
     }
 }
