@@ -1,4 +1,5 @@
 import { fileURLToPath, URL } from 'node:url';
+import svgr from "vite-plugin-svgr";
 
 import { defineConfig } from 'vite';
 import plugin from '@vitejs/plugin-react';
@@ -35,7 +36,16 @@ const target = env.ASPNETCORE_HTTPS_PORT ? `https://localhost:${env.ASPNETCORE_H
 
 // https://vitejs.dev/config/
 export default defineConfig({
-    plugins: [plugin()],
+    plugins: [plugin(),
+        svgr({
+            svgrOptions: {
+                icon: true,
+                // This will transform your SVG to a React component
+                exportType: "named",
+                namedExport: "ReactComponent",
+            },
+        }),
+    ],
     resolve: {
         alias: {
             '@': fileURLToPath(new URL('./src', import.meta.url))
