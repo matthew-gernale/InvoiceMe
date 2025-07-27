@@ -7,7 +7,7 @@ import {
     HorizontaLDots,
 } from "../icons";
 import { useSidebar } from "../context/SidebarContext";
-import { main, financials, crm, hr } from "./menuItems";
+import { main, financials, crm } from "./menuItems";
 
 
 type NavItem = {
@@ -27,14 +27,14 @@ type SubItem = {
 type MenuType =
     | "main"
     | "financials"
-    | "crm"
-    | "hr";
+    | "crm";
+    //| "hr";
 
 const MENU_SECTIONS: { label: string; type: MenuType; items: NavItem[] }[] = [
     { label: "Menu", type: "main", items: main },
     { label: "Financials", type: "financials", items: financials },
     { label: "CRM", type: "crm", items: crm },
-    { label: "Human Resource", type: "hr", items: hr },
+    //{ label: "Human Resource", type: "hr", items: hr },
 ];
 
 const AppSidebar: React.FC = () => {

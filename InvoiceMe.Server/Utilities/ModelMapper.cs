@@ -47,5 +47,24 @@ namespace InvoiceMe.Server.Utilities
                 UnitPrice = dbInvoiceItem.UnitPrice
             };
         }
+
+        public static PaymentDTO ToPaymentDTO(Payment dbPayment)
+        {
+            return new PaymentDTO
+            {
+                Id = dbPayment.Id,
+                Client = $"{dbPayment.Invoice.Client.User.FirstName} {dbPayment.Invoice.Client.User.LastName}",
+                RefNo = dbPayment.RefNo,
+                Amount = dbPayment.Amount,
+                BankType = dbPayment.BankType,
+                Description = dbPayment.Description,
+                Status = dbPayment.Status,
+                RejectReason = dbPayment.RejectReason,
+                ProofOfPayments = dbPayment.ProofOfPayments,
+                DateCreated = dbPayment.DateCreated,
+                ApprovalDate = dbPayment.ApprovalDate,
+                ApprovedByName = dbPayment.ApprovedByName,
+            };
+        }
     }
 }

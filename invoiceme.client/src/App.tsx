@@ -18,6 +18,7 @@ import SuccessModal from '../src/components/ui/modal/SuccessModal'
 import AllClientsPage from "./pages/ClientPages/AllClientsPage";
 import ClientDetailsPage from "./pages/ClientPages/ClientDetailsPage";
 import AllDeletedClientsPage from "./pages/ClientPages/AllDeletedClientsPage";
+import AllPaymentsPage from "./pages/PaymentPages/AllPaymentsPage";
 
 export default function App() {
   return (
@@ -38,6 +39,7 @@ export default function App() {
             <Route path="/clients" element={<AllClientsPage />} />
             <Route path="/clients/:clientId" element={<ClientDetailsPage />} />
             <Route path="/clients/deleted" element={<AllDeletedClientsPage />} />
+            <Route path="/all-payments" element={<AllPaymentsPage />} />
           </Route>
 
           {/* Auth Layout */}

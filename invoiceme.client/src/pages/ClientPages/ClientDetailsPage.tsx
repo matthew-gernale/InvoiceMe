@@ -11,6 +11,7 @@ import { FiMessageSquare, FiPhone } from "react-icons/fi"
 import { MdOutlineMailOutline } from "react-icons/md"
 import TabButton from '../../components/custom/Button/TabButton'
 import SingleClientInvoice from '../Invoice/SingleClientInvoice'
+import SingleClientPayment from '../PaymentPages/SingleClientPayment'
 import TableSkeleton from '../../components/skeleton/TableSkeleton'
 import UpdateClientModal from './UpdateClientModal'
 import { SquarePen } from 'lucide-react';
@@ -48,7 +49,7 @@ function ClientDetailsPage() {
                 return <SingleClientInvoice clientId={clientIntId} />
 
             case 'Payments':
-                return <p>Payments</p>
+                return <SingleClientPayment clientId={clientIntId} />
         }
     }
 

@@ -45,10 +45,10 @@ export const crm: NavItem[] = [
 ];
 
 // Humar Resources
-export const hr: NavItem[] = [
-    {
-        name: "User",
-        icon: <BookUser />,
-        path: '/users'
-    },
-];
+//export const hr: NavItem[] = [
+//    {
+//        name: "User",
+//        icon: <BookUser />,
+//        path: '/users'
+//    },
+//];
