@@ -116,8 +116,8 @@ function AllInvoicePage() {
     useEffect(() => {
         const fetchData = async () => {
             setIsLoading(true);
-            await getInvoicePaginated();
             await getInvoiceCountByStatus();
+            await getInvoicePaginated();
             setIsLoading(false);
         }
 
@@ -132,8 +132,8 @@ function AllInvoicePage() {
     return (
         <>
             <PageMeta
-                title="WhiteN | Expenses"
-                description="This page shows branch expenses"
+                title="InvoiceMe | Invoice"
+                description="This page shows client invoice"
             />
 
             <PageBreadCrumb
@@ -164,7 +164,7 @@ function AllInvoicePage() {
                     <CardCount
                         Icon={FileClock}
                         Title="TO BE PAID"
-                        Count={statusCount.PendingCount}
+                        Count={statusCount.ToBePaidCount}
                         OnClick={() => handleApplyFilter(InvoiceStatus.TO_BE_PAID)}
                         CardClassName='pending-count-card'
                     />
@@ -173,7 +173,7 @@ function AllInvoicePage() {
                     <CardCount
                         Icon={ClipboardCheck}
                         Title="CANCELLED"
-                        Count={statusCount.ApprovedCount}
+                        Count={statusCount.CancelledCount}
                         OnClick={() => handleApplyFilter(InvoiceStatus.CANCELLED)}
                         CardClassName='done-count-card'
                     />
@@ -182,7 +182,7 @@ function AllInvoicePage() {
                     <CardCount
                         Icon={ClipboardX}
                         Title="OVERDUE"
-                        Count={statusCount.RejectedCount}
+                        Count={statusCount.OverdueCount}
                         OnClick={() => handleApplyFilter(InvoiceStatus.OVERDUE)}
                         CardClassName='rejected-count-card'
                     />
@@ -191,7 +191,7 @@ function AllInvoicePage() {
                     <CardCount
                         Icon={ClipboardX}
                         Title="PAID"
-                        Count={statusCount.RejectedCount}
+                        Count={statusCount.PaidCount}
                         OnClick={() => handleApplyFilter(InvoiceStatus.PAID)}
                         CardClassName='approved-count-card'
                     />
@@ -289,7 +289,12 @@ function AllInvoicePage() {
                                                 </p>
                                             </td>
                                             <td className="px-4 py-4 border border-gray-100 dark:border-white/[0.05] dark:text-white/90 whitespace-nowrap">
-                                                {item.IsOverDue ? <p>-</p> : <p className='bg-red-300 text-red-600 w-fit rounded-full'>OVERDUE</p>}
+                                                {
+                                                    item.IsOverDue &&
+                                                    <div className='w-full flex items-center justify-center'>
+                                                            <p className='text-center block bg-red-100 text-red-600 px-[10px] w-fit text-[10px] rounded-full'>OVERDUE</p>
+                                                    </div>
+                                                }
                                             </td>
                                             <td className="px-4 py-4 border border-gray-100 dark:border-white/[0.05] dark:text-white/90 whitespace-nowrap">
                                                 <p className="block font-medium text-center text-gray-800 text-theme-sm dark:text-white/90">

@@ -7,6 +7,7 @@ namespace InvoiceMe.Server.Response
         public int Skip { get; set; } = 0;
         public string? SearchValue { get; set; }
         public string UserId { get; set; } = string.Empty;
+        public bool IsSoftDeleted { get; set; } 
 
         public ApprovalStatus? ApprovalStatus { get; set; }
         public InvoiceStatus? InvoiceStatus { get; set; }

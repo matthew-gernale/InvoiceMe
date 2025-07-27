@@ -29,6 +29,9 @@ namespace InvoiceMe.Server.Services.InvoiceServices
                 IQueryable<Invoice>? statusFilterQuery = FilterInvoiceByStatus(request.InvoiceStatus, query);
                 if (statusFilterQuery != null) query = statusFilterQuery;
 
+                IQueryable<Invoice>? clientIdFilterQuery = FilterInvoiceByClientId(request.CustomerId, query);
+                if (clientIdFilterQuery != null) query = clientIdFilterQuery;
+
                 IQueryable<Invoice>? dateRangeFilterQuery = FilterInvoiceByDateRange(request.DateStart, request.DateEnd, query);
                 if (dateRangeFilterQuery != null) query = dateRangeFilterQuery;
 
@@ -62,6 +65,12 @@ namespace InvoiceMe.Server.Services.InvoiceServices
 
             if (role == UserRoles.CLIENT) query = query.Where(invoice => invoice.Client.UserId == userId);
             return query;
+        }
+
+        private IQueryable<Invoice>? FilterInvoiceByClientId(int clientId, IQueryable<Invoice> query)
+        {
+            if (clientId == 0) return null;
+            return query.Where(invoice => invoice.ClientId == clientId);
         }
 
         private IQueryable<Invoice>? FilterInvoiceByStatus(InvoiceStatus? status, IQueryable<Invoice> query)
@@ -152,7 +161,7 @@ namespace InvoiceMe.Server.Services.InvoiceServices
 
                 var newInvoice = new Invoice
                 {
-                    InvoiceNo = $"INV-{TimeUtils.PHTime():yyyyMMdd}-{Guid.NewGuid().ToString("N").Substring(0, 4)}",
+                    InvoiceNo = $"INV-{TimeUtils.PHTime():yyyyMMdd}-{Guid.NewGuid().ToString("N").Substring(0, 4).ToUpper()}",
                     InvoiceDate = TimeUtils.PHTime(),
                     DueDate = request.DueDate,
                     Status = InvoiceStatus.TO_BE_PAID,

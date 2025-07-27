@@ -67,7 +67,7 @@ class InvoiceService {
 
     async updateInvoiceStatus(payload: UpdateInvoiceStatusDTO): Promise<GeneralResponse<object>> {
         try {
-            const response = await api.post('/invoice/update', payload);
+            const response = await api.put  ('/invoice/update', payload);
 
             successModalInstance.show({
                 message: 'Invoice status updated successfully!',

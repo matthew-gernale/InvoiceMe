@@ -1,4 +1,6 @@
 ﻿
+using InvoiceMe.Server.Data.Models;
+
 namespace InvoiceMe.Server.Utilities
 {
     public class ModelMapper
@@ -12,7 +14,7 @@ namespace InvoiceMe.Server.Utilities
                 ClientName = $"{dbInvoice.Client.User.FirstName} {dbInvoice.Client.User.LastName}",
                 InvoiceDate = dbInvoice.InvoiceDate,
                 Status = dbInvoice.Status,
-                IsOverDue = dbInvoice.DueDate == TimeUtils.PHTime(),
+                IsOverDue = dbInvoice.DueDate.Value.Date <= TimeUtils.PHTime().Date,
                 Total = dbInvoice.TotalAmount
             };
         }

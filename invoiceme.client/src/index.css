@@ -914,6 +914,14 @@ span.flatpickr-weekday,
 }
 
 
+.delete-icon-btn {
+    padding: 7px;
+    border-radius: 7px;
+    color: white;
+    background-color: var(--color-red-400);
+}
+
+
 .edit-icon-btn {
     padding: 7px;
     border-radius: 7px;

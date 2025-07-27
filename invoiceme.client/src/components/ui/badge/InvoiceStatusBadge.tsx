@@ -48,7 +48,7 @@ function InvoiceStatusBadge(props: InvoiceStatusBadgeProps) {
             variant='light'
             size='sm'
             color={badgeColor}
-            children={InvoiceStatus[props.status]}
+            children={InvoiceStatus[props.status].toString().replace('_', ' ')}
         />
     );
 }

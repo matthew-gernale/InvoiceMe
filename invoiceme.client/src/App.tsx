@@ -14,12 +14,17 @@ import Saas from "./pages/Dashboard/Saas";
 import { ScrollToTop } from "./components/common/ScrollToTop";
 import ComingSoon from "./pages/OtherPage/ComingSoon";
 import AllInvoicePage from "./pages/Invoice/AllInvoicePage";
+import SuccessModal from '../src/components/ui/modal/SuccessModal'
+import AllClientsPage from "./pages/ClientPages/AllClientsPage";
+import ClientDetailsPage from "./pages/ClientPages/ClientDetailsPage";
+import AllDeletedClientsPage from "./pages/ClientPages/AllDeletedClientsPage";
 
 export default function App() {
   return (
     <>
       <Router>
         <ScrollToTop />
+        <SuccessModal />
         <Routes>
           {/* Dashboard Layout */}
           <Route element={<AppLayout />}>
@@ -30,6 +35,9 @@ export default function App() {
             <Route path="/stocks" element={<Stocks />} />
             <Route path="/saas" element={<Saas />} />
             <Route path="/all-invoices" element={<AllInvoicePage />} />
+            <Route path="/clients" element={<AllClientsPage />} />
+            <Route path="/clients/:clientId" element={<ClientDetailsPage />} />
+            <Route path="/clients/deleted" element={<AllDeletedClientsPage />} />
           </Route>
 
           {/* Auth Layout */}

@@ -17,6 +17,7 @@ export class GetPaginatedDTO {
     Skip: number = 0;
     SearchValue: string = '';
     UserId: string | null = null;
+    IsSoftDeleted: boolean = false;
 
     ApprovalStatus: ApprovalStatus | null = null;
     InvoiceStatus: InvoiceStatus | null = null;
@@ -53,6 +54,7 @@ export class PaginatedCountsResponse {
     ToBePaidCount: number = 0;
     PendingPaymentCount: number = 0;
     PaidCount: number = 0;
+    OverdueCount: number = 0;
 
     constructor(init?: Partial<PaginatedCountsResponse>) {
         Object.assign(this, init);

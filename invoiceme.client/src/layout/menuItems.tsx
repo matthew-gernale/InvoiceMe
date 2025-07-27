@@ -37,7 +37,10 @@ export const crm: NavItem[] = [
     {
         name: "Client",
         icon: <BookUser />,
-        path: '/clients'
+        subItems: [
+            { name: "Manage", path: "/clients" },
+            { name: "Recover clients", path: "/clients/deleted" },
+        ],
     },
 ];
 
