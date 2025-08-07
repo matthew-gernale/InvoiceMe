@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Link, useLocation } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
+import authService from "../services/authService";
 
 // Assume these icons are imported from an icon library
 import {
@@ -7,7 +8,7 @@ import {
     HorizontaLDots,
 } from "../icons";
 import { useSidebar } from "../context/SidebarContext";
-import { main, financials, crm } from "./menuItems";
+import { main, financials, crm, client_items } from "./menuItems";
 
 
 type NavItem = {
@@ -27,17 +28,24 @@ type SubItem = {
 type MenuType =
     | "main"
     | "financials"
-    | "crm";
-    //| "hr";
+    | "crm"
+    | "client";
 
 const MENU_SECTIONS: { label: string; type: MenuType; items: NavItem[] }[] = [
     { label: "Menu", type: "main", items: main },
     { label: "Financials", type: "financials", items: financials },
     { label: "CRM", type: "crm", items: crm },
-    //{ label: "Human Resource", type: "hr", items: hr },
+];
+
+
+// Client Navigation
+const CLIENT_NAVIGATION: { label: string; type: MenuType; items: NavItem[] }[] = [
+    { label: "", type: "client", items: client_items },
 ];
 
 const AppSidebar: React.FC = () => {
+    const navigate = useNavigate();
+
     const { isExpanded, isMobileOpen, isHovered, setIsHovered } = useSidebar();
     const location = useLocation();
     const [openSubmenu, setOpenSubmenu] = useState<{ type: MenuType; index: number } | null>(null);
@@ -46,18 +54,60 @@ const AppSidebar: React.FC = () => {
 
     const isActive = useCallback((path: string) => location.pathname === path, [location.pathname]);
 
+    const [navItems, setNavItems] = useState<{ label: string; type: MenuType; items: NavItem[] }[]>([]);
+
+    const [role, setRole] = useState<string>();
+
     useEffect(() => {
-        for (const section of MENU_SECTIONS) {
-            for (let i = 0; i < section.items.length; i++) {
-                const item = section.items[i];
-                if (item.subItems?.some(sub => isActive(sub.path))) {
-                    setOpenSubmenu({ type: section.type, index: i });
-                    return;
+        const fetchMenu = async () => {
+            const isSuccess = await authService.refreshToken();
+
+            if (isSuccess) {
+                const userClaims = await authService.getUserClaims();
+                setRole(userClaims?.role);
+
+                switch (userClaims?.role) {
+                    case 'ADMIN':
+                        setNavItems(MENU_SECTIONS);
+                        break;
+
+                    case 'CLIENT':
+                        setNavItems(CLIENT_NAVIGATION);
+                        break;
                 }
+
+                for (const section of navItems) {
+                    for (let i = 0; i < section.items.length; i++) {
+                        const item = section.items[i];
+                        if (item.subItems?.some(sub => isActive(sub.path))) {
+                            setOpenSubmenu({ type: section.type, index: i });
+                            return;
+                        }
+                    }
+                }
+                setOpenSubmenu(null);
             }
+        };
+
+        fetchMenu();
+
+    }, [location, isActive, navItems]);
+
+    const logoNavigation = () => {
+        switch (role) {
+            case 'ADMIN':
+                navigate('/');
+                break;
+
+            case 'CLIENT':
+                navigate('/client-dashboard');
+                break;
+
+            default:
+                navigate('/signin');
+                break;
         }
-        setOpenSubmenu(null);
-    }, [location, isActive]);
+    }
 
     useEffect(() => {
         if (openSubmenu) {
@@ -75,7 +125,26 @@ const AppSidebar: React.FC = () => {
         );
     };
 
-    const renderItems = (items: NavItem[], type: MenuType) => (
+    const renderItems = (items: { label: string; type: MenuType; items: NavItem[] }[]) => (
+        <div>
+            {items.map((section) => (
+                <div key={section.type}>
+                    <h2
+                        className={`mb-4 text-xs uppercase flex leading-[20px] text-gray-400 ${!isExpanded && !isHovered
+                            ? "lg:justify-center"
+                            : "justify-start"
+                            }`}
+                    >
+                        {isExpanded || isHovered || isMobileOpen ? section.label : <HorizontaLDots className="size-6" />}
+                    </h2>
+
+                    {renderItemsInSection(section.items, section.type)}
+                </div>
+            ))}
+        </div>
+    );
+
+    const renderItemsInSection = (items: NavItem[], type: MenuType) => (
         <ul className="flex flex-col gap-4">
             {items.map((item, index) => {
                 const key = `${type}-${index}`;
@@ -85,7 +154,9 @@ const AppSidebar: React.FC = () => {
                     <li key={item.name}>
                         {item.subItems ? (
                             <button
-                                onClick={() => handleSubmenuToggle(type, index)}
+                                onClick={() => {
+                                    handleSubmenuToggle(type, index);
+                                }}
                                 className={`menu-item group ${isOpen ? "menu-item-active" : "menu-item-inactive"} ${!isExpanded && !isHovered ? "lg:justify-center" : "lg:justify-start"}`}
                             >
                                 <span className={`menu-item-icon-size ${isOpen ? "menu-item-icon-active" : "menu-item-icon-inactive"}`}>
@@ -93,12 +164,13 @@ const AppSidebar: React.FC = () => {
                                 </span>
                                 {(isExpanded || isHovered || isMobileOpen) && <span className="menu-item-text">{item.name}</span>}
                                 {(isExpanded || isHovered || isMobileOpen) && (
-                                    <ChevronDownIcon className={`ml-auto w-5 h-5 transition-transform duration-200 ${isOpen ? "rotate-180 text-brand-500" : ""}`} />
+                                    <ChevronDownIcon className={`ml-auto w-5 h-5 transition-transform duration-200 ${isOpen ? "rotate-180 text-emerald-600" : ""}`} />
                                 )}
                             </button>
                         ) : (
                             item.path && (
-                                <Link to={item.path} className={`menu-item group ${isActive(item.path) ? "menu-item-active" : "menu-item-inactive"}`}>
+                                <Link to={item.path}
+                                    className={`menu-item group ${isActive(item.path) ? "menu-item-active" : "menu-item-inactive"}`}>
                                     <span className={`menu-item-icon-size ${isActive(item.path) ? "menu-item-icon-active" : "menu-item-icon-inactive"}`}>
                                         {item.icon}
                                     </span>
@@ -109,9 +181,7 @@ const AppSidebar: React.FC = () => {
 
                         {item.subItems && (isExpanded || isHovered || isMobileOpen) && (
                             <div
-                                ref={(el: HTMLDivElement | null): void => {
-                                    subMenuRefs.current[key] = el;
-                                }}
+                                ref={(el: HTMLDivElement | null): void => { subMenuRefs.current[key] = el; }}
                                 className="overflow-hidden transition-all duration-300"
                                 style={{ height: isOpen ? `${subMenuHeight[key]}px` : "0px" }}
                             >
@@ -141,29 +211,26 @@ const AppSidebar: React.FC = () => {
 
     return (
         <aside
-            className={`bg-whiten-secondary fixed flex flex-col top-0 px-5 left-0 dark:bg-gray-900 dark:border-gray-800 h-screen z-50 border-r border-gray-200 transition-all duration-300
+            className={`bg-white fixed flex flex-col top-0 px-5 left-0 dark:bg-gray-900 dark:border-gray-800 h-screen z-50 border-r border-gray-200 transition-all duration-300
         ${isExpanded || isMobileOpen ? "w-[290px]" : isHovered ? "w-[290px]" : "w-[90px]"} 
         ${isMobileOpen ? "translate-x-0" : "-translate-x-full"} lg:translate-x-0`}
             onMouseEnter={() => !isExpanded && setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
             <div className={`pt-[120px] lg:pt-[50px] pb-8 flex justify-center`}>
-                <Link to="/" className="block">
-                    <p className={`${isExpanded || isHovered ? 'text-[25px]' : 'text-[10px]'} font-semibold text-emerald-600`}>InvoiceMe</p>
-                </Link>
+                <p
+                    className={`${isExpanded || isHovered ? 'text-[25px]' : 'text-[10px]'} 
+                                    font-semibold text-emerald-600 cursor-pointer select-none`}
+                    onClick={logoNavigation}
+                >
+                    InvoiceMe
+                </p>
             </div>
 
             <div className="flex flex-col overflow-y-auto no-scrollbar">
                 <nav className="mb-6">
                     <div className="flex flex-col gap-4">
-                        {MENU_SECTIONS.map(section => (
-                            <div key={section.type}>
-                                <h2 className={`mb-4 text-xs uppercase text-gray-400 flex ${!isExpanded && !isHovered ? "lg:justify-center" : "justify-start"}`}>
-                                    {isExpanded || isHovered || isMobileOpen ? section.label : <HorizontaLDots className="size-6" />}
-                                </h2>
-                                {renderItems(section.items, section.type)}
-                            </div>
-                        ))}
+                        {renderItems(navItems)}
                     </div>
                 </nav>
             </div>

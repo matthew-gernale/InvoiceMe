@@ -1,32 +1,32 @@
-import { useState } from "react";
+//import { useState } from "react";
 import ComponentCard from "../../common/ComponentCard";
 import Form from "../Form";
 import Label from "../Label";
 import Input from "../input/InputField";
 import Select from "../Select";
-import TextArea from "../input/TextArea";
+/*import TextArea from "../input/TextArea";*/
 import Button from "../../ui/button/Button";
 import { PaperPlaneIcon } from "../../../icons";
 
 export default function ExampleFormOne() {
-  const [message, setMessage] = useState<string>("");
+  //const [message, setMessage] = useState<string>("");
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Form submitted:");
   };
   const options = [
-    { value: "marketing", label: "Option 1" },
-    { value: "template", label: "Option 2" },
-    { value: "development", label: "Option 3" },
+    { value: 1, label: "Option 1" },
+    { value: 2, label: "Option 2" },
+    { value: 3, label: "Option 3" },
   ];
-  const handleSelectChange = (value: string) => {
+  const handleSelectChange = (value: number) => {
     console.log("Selected value:", value);
   };
 
-  const handleTextareaChange = (value: string) => {
-    setMessage(value);
-    console.log("Message:", value);
-  };
+  //const handleTextareaChange = (value: string) => {
+  //  setMessage(value);
+  //  console.log("Message:", value);
+  //};
   return (
     <ComponentCard title="Example Form">
       <Form onSubmit={handleSubmit}>
@@ -53,19 +53,18 @@ export default function ExampleFormOne() {
               options={options}
               placeholder="Select an option"
               onChange={handleSelectChange}
-              defaultValue=""
               className="bg-gray-50 dark:bg-gray-800"
             />
           </div>
           <div className="col-span-2">
             <Label htmlFor="email">Messages</Label>
-            <TextArea
-              placeholder="Type your message here..."
-              rows={6}
-              value={message}
-              onChange={handleTextareaChange}
-              className=" bg-gray-50 dark:bg-gray-800"
-            />
+            {/*<TextArea*/}
+            {/*  placeholder="Type your message here..."*/}
+            {/*  rows={6}*/}
+            {/*  value={message}*/}
+            {/*  onChange={handleTextareaChange}*/}
+            {/*  className=" bg-gray-50 dark:bg-gray-800"*/}
+            {/*/>*/}
           </div>
           <div className="col-span-2">
             <Button size="sm" className="w-full">

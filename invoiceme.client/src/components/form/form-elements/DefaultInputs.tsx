@@ -4,16 +4,16 @@ import Label from "../Label";
 import Input from "../input/InputField";
 import Select from "../Select";
 import { EyeCloseIcon, EyeIcon, TimeIcon } from "../../../icons";
-import DatePicker from "../date-picker.tsx";
+//import DatePicker from "../date-picker.tsx";
 
 export default function DefaultInputs() {
   const [showPassword, setShowPassword] = useState(false);
   const options = [
-    { value: "marketing", label: "Marketing" },
-    { value: "template", label: "Template" },
-    { value: "development", label: "Development" },
+    { value: 1, label: "Marketing" },
+    { value: 2, label: "Template" },
+    { value: 3, label: "Development" },
   ];
-  const handleSelectChange = (value: string) => {
+  const handleSelectChange = (value: number) => {
     console.log("Selected value:", value);
   };
 
@@ -58,15 +58,15 @@ export default function DefaultInputs() {
         </div>
 
         <div>
-          <DatePicker
-            id="date-picker"
-            label="Date Picker Input"
-            placeholder="Select a date"
-            onChange={(dates, currentDateString) => {
-              // Handle your logic
-              console.log({ dates, currentDateString });
-            }}
-          />
+          {/*<DatePicker*/}
+          {/*  id="date-picker"*/}
+          {/*  label="Date Picker Input"*/}
+          {/*  placeholder="Select a date"*/}
+          {/*  onChange={(dates, currentDateString) => {*/}
+          {/*    // Handle your logic*/}
+          {/*    console.log({ dates, currentDateString });*/}
+          {/*  }}*/}
+          {/*/>*/}
         </div>
 
         <div>

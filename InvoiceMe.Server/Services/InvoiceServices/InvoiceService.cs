@@ -1,5 +1,4 @@
-﻿using InvoiceMe.Server.Data.Models;
-
+﻿
 namespace InvoiceMe.Server.Services.InvoiceServices
 {
     public class InvoiceService : IInvoiceService

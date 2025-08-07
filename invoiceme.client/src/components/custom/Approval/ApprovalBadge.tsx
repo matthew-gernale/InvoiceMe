@@ -13,9 +13,6 @@ function ApprovalBadge({ Status }: HeaderProps) {
     } else if (Status === ApprovalStatus.REJECTED) {
         return <Badge variant="solid" color="error">REJECTED</Badge>;
     }
-    else if (Status === ApprovalStatus.TO_BE_PAID) {
-        return <Badge variant="solid" color="info">TO BE PAID</Badge>;
-    }
     else {
         return null;
     }

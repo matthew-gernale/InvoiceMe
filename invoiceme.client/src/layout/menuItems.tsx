@@ -17,19 +17,25 @@ export const main: NavItem[] = [
     },
 ];
 
+const invoiceNav: NavItem =
+{
+    name: "Invoice",
+    icon: <ReceiptText />,
+    path: '/all-invoices'
+};
+
+
+const paymentNav: NavItem =
+{
+    name: "Payments",
+    icon: <CreditCard />,
+    path: '/all-payments'
+};
 
 // financials
 export const financials: NavItem[] = [
-    {
-        name: "Invoice",
-        icon: <ReceiptText />,
-        path: '/all-invoices'
-    },
-    {
-        name: "Payments",
-        icon: <CreditCard />,
-        path: '/all-payments'
-    },
+    invoiceNav,
+    paymentNav
 ];
 
 // CRM
@@ -44,11 +50,14 @@ export const crm: NavItem[] = [
     },
 ];
 
-// Humar Resources
-//export const hr: NavItem[] = [
-//    {
-//        name: "User",
-//        icon: <BookUser />,
-//        path: '/users'
-//    },
-//];
+
+// CLIENT NAVIGATIONS
+export const client_items: NavItem[] = [
+    {
+        name: "Dashboard",
+        icon: <Home />,
+        path: '/client-dashboard'
+    },
+    invoiceNav,
+    paymentNav
+];

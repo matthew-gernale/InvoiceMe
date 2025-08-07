@@ -69,9 +69,11 @@
 		<Using Include="InvoiceMe.Server.Data.DTOs.InvoiceDTOs" />
 		<Using Include="InvoiceMe.Server.Data.DTOs.ClientDTOs" />
 		<Using Include="InvoiceMe.Server.Data.DTOs.PaymentDTOs" />
+		<Using Include="InvoiceMe.Server.Data.DTOs.AuthDTOs" />
 		
 		<Using Include="InvoiceMe.Server.Services.InvoiceServices" />
 		<Using Include="InvoiceMe.Server.Services.ClientServices" />
 		<Using Include="InvoiceMe.Server.Services.PaymentServices" />
+		<Using Include="InvoiceMe.Server.Services.AuthServices" />
 	</ItemGroup>
 </Project>

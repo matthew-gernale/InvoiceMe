@@ -150,7 +150,7 @@ function AllInvoicePage() {
             <AddInvoiceModal isOpen={isShowAddInvoice} onClose={handleAddInvoiceResult} />
             <SingleInvoiceModal isOpen={isShowInvoiceDetails} onClose={handleInvoiceUpdateResult} selectedInvoice={selectedInvoice} />
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-5 mb-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5 mb-5">
                 <div>
                     <CardCount
                         Icon={List}

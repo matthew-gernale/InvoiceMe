@@ -1,6 +1,4 @@
 ﻿
-using InvoiceMe.Server.Data.Models;
-
 namespace InvoiceMe.Server.Services.PaymentServices
 {
     public class PaymentService : IPaymentService

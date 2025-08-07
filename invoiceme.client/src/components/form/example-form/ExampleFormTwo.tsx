@@ -6,7 +6,7 @@ import Select from "../Select";
 import Radio from "../input/Radio";
 import Form from "../Form";
 import Button from "../../ui/button/Button";
-import DatePicker from "../date-picker.tsx";
+//import DatePicker from "../date-picker.tsx";
 
 export default function ExampleFormTwo() {
   const [selectedOption, setSelectedOption] = useState<string>("Free");
@@ -17,24 +17,24 @@ export default function ExampleFormTwo() {
   };
 
   const optionsGender = [
-    { value: "male", label: "Male" },
-    { value: "female", label: "Female" },
-    { value: "other", label: "Others" },
+    { value: 1, label: "Male" },
+    { value: 2, label: "Female" },
+    { value: 3, label: "Others" },
   ];
 
   const categoryOptions = [
-    { value: "cate1", label: "Category 1" },
-    { value: "cate2", label: "Category 2" },
-    { value: "cate3", label: "Category 3" },
+    { value: 1, label: "Category 1" },
+    { value: 2, label: "Category 2" },
+    { value: 3, label: "Category 3" },
   ];
 
   const country = [
-    { value: "bd", label: "Bangladesh" },
-    { value: "usa", label: "United States" },
-    { value: "canada", label: "Canada" },
+    { value: 1, label: "Bangladesh" },
+    { value: 2, label: "United States" },
+    { value: 3, label: "Canada" },
   ];
 
-  const handleSelectGender = (value: string) => {
+  const handleSelectGender = (value: number) => {
     console.log("Selected value:", value);
   };
 
@@ -66,21 +66,20 @@ export default function ExampleFormTwo() {
               options={optionsGender}
               placeholder="Select an option"
               onChange={handleSelectGender}
-              defaultValue=""
               className="bg-gray-50 dark:bg-gray-800"
             />
           </div>
 
           <div className="col-span-2">
-            <DatePicker
-              id="dob-picker"
-              label="Date of Birth"
-              placeholder="Select an option"
-              onChange={(dates, currentDateString) => {
-                // Handle your logic
-                console.log({ dates, currentDateString });
-              }}
-            />
+            {/*<DatePicker*/}
+            {/*  id="dob-picker"*/}
+            {/*  label="Date of Birth"*/}
+            {/*  placeholder="Select an option"*/}
+            {/*  onChange={(dates, currentDateString) => {*/}
+            {/*    // Handle your logic*/}
+            {/*    console.log({ dates, currentDateString });*/}
+            {/*  }}*/}
+            {/*/>*/}
           </div>
 
           <div className="col-span-2">
@@ -89,7 +88,6 @@ export default function ExampleFormTwo() {
               options={categoryOptions}
               placeholder="Select an option"
               onChange={handleSelectGender}
-              defaultValue=""
               className="bg-gray-50 dark:bg-gray-800"
             />
           </div>
@@ -120,7 +118,6 @@ export default function ExampleFormTwo() {
               options={country}
               placeholder="--Select Country--"
               onChange={handleSelectGender}
-              defaultValue=""
               className="bg-gray-50 dark:bg-gray-800"
             />
           </div>
